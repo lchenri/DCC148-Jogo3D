@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 3f;
     public float horizontalSpeed = 4f;
 
+    public bool isJumping = false;
+    public bool goingDown = false;
+    public GameObject playerObject;
+
     void MovimentaEsquerda()
     {
         transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
@@ -36,5 +40,38 @@ public class PlayerMovement : MonoBehaviour
                 MovimentaDireita();
             }
         }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space))
+        {
+            if (!isJumping)
+            {
+                isJumping = true;
+                playerObject.GetComponent<Animator>().Play("jumpAnimation");
+                StartCoroutine(JumpSequence());
+            }
+        }
+
+        if(isJumping)
+        {
+            if(!goingDown)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 3f, Space.World);
+            }
+
+            if(goingDown)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * -3f, Space.World);
+            }
+        }
+    }
+
+    IEnumerator JumpSequence()
+    {
+        yield return new WaitForSeconds(0.4f);
+        goingDown = true;
+        yield return new WaitForSeconds(0.4f);
+        isJumping = false;
+        goingDown = false;
+        playerObject.GetComponent<Animator>().Play("Standard Run");
     }
 }

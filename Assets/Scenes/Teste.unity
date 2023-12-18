@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.45054507, g: 0.5005313, b: 0.5750859, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,10 +256,10 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.74
+  m_Range: 10.1623535
+  m_SpotAngle: 53.1
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -296,7 +296,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -315,13 +315,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167920833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.3188315, y: -0.01395903, z: 0.22037761, w: 0.92172956}
+  m_LocalPosition: {x: 0, y: 2.822, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_Father: {fileID: 1780485625}
+  m_LocalEulerAnglesHint: {x: 36.435, y: 8.203, z: 29.597}
 --- !u!1001 &1250221267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +758,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1167920835}
   - {fileID: 1843221758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -775,6 +776,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   horizontalSpeed: 4
+  isJumping: 0
+  goingDown: 0
+  playerObject: {fileID: 1843221757}
 --- !u!1 &1843221757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 417ca31ba7ebc334482601bd53a0b997, type: 3}
@@ -812,7 +816,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1293723180}
   - {fileID: 1560284727}
-  - {fileID: 1167920835}
   - {fileID: 1443468313}
   - {fileID: 665671330}
   - {fileID: 1780485625}
