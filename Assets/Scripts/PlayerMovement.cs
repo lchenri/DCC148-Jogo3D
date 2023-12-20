@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private GameObject playerObject;
     [SerializeField] private float horizontalSpeed = 4f;
+    [SerializeField] private float maxSpeed = 15f;
+
     private int targetScore = 1;
     public float moveSpeed = 4f;
     public bool isJumping = false;
@@ -25,14 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(moveSpeed);
-        Debug.Log(ScoreController.instance.score);
-
         score = ScoreController.instance.score;
 
-        if (score > targetScore && moveSpeed < 25f)
+        if (score > targetScore && moveSpeed < maxSpeed)
         {
             moveSpeed += 0.1f;
+            horizontalSpeed += 0.05f;
             targetScore++;
         }
 
@@ -86,5 +86,13 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         goingDown = false;
         playerObject.GetComponent<Animator>().Play("Standard Run");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Hit");
+        }
     }
 }
