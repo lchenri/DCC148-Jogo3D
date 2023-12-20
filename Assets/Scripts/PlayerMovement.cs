@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float moveSpeed = 4f;
     public float horizontalSpeed = 4f;
 
     public bool isJumping = false;
