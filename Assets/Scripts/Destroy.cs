@@ -6,22 +6,16 @@ public class Destroy : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private float playerZPos;
-    void Start()
+    void Update()
     {
-        StartCoroutine(DestroySection());
-    }
-
-    IEnumerator DestroySection()
-    {
+        playerZPos = player.transform.position.z;
         if (transform.name == "Section(Clone)")
         {
-            yield return new WaitForSeconds(30);
-            playerZPos = player.transform.position.z;
-            if (playerZPos < transform.position.z + 60)
+            if (playerZPos > transform.position.z + 90)
             {
-                yield return new WaitForSeconds(20);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
         }
     }
 }
