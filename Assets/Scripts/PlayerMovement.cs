@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private GameObject playerObject;
     [SerializeField] private float horizontalSpeed = 4f;
+    private int targetScore = 1;
     public float moveSpeed = 4f;
-
     public bool isJumping = false;
     public bool goingDown = false;
+    private int score;
+
 
     void MovimentaEsquerda()
     {
@@ -23,6 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(moveSpeed);
+        Debug.Log(ScoreController.instance.score);
+
+        score = ScoreController.instance.score;
+
+        if (score > targetScore && moveSpeed < 25f)
+        {
+            moveSpeed += 0.1f;
+            targetScore++;
+        }
+
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime, Space.World);
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -51,14 +64,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(isJumping)
+        if (isJumping)
         {
-            if(!goingDown)
+            if (!goingDown)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * 3f, Space.World);
             }
 
-            if(goingDown)
+            if (goingDown)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * -3f, Space.World);
             }
