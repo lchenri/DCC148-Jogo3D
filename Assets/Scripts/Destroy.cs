@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    public GameObject player;
+    [SerializeField] private GameObject player;
     private float playerZPos;
     void Start()
     {

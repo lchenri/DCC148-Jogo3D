@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public GameObject[] section;
-    public GameObject player;
-    public int zPos = 60;
-    public bool generating = false;
-    public int secNum;
+    [SerializeFleid] private GameObject[] section;
+    [SerializeFleid] private GameObject player;
+    [SerializeFleid] private int zPos = 60;
+    private bool generating = false;
+    private int secNum;
     private int lastSection;
     private float sectionTime;
 
