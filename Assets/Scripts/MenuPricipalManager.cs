@@ -6,16 +6,30 @@ using UnityEngine.SceneManagement;
 public class MenuPricipalManager : MonoBehaviour
 {
     [SerializeField] private string nomeDoJogo;
-    [SerializeField] private string nomeSeletorSkin;
+    [SerializeField] private string nomeTutorial;
+    [SerializeField] private GameObject painelScore;
+    [SerializeField] private GameObject painelMenu;
 
     public void Jogar()
     {
         SceneManager.LoadScene(nomeDoJogo);
     }
 
-    public void Skin()
+    public void Tutorial()
     {
-        SceneManager.LoadScene(nomeSeletorSkin);
+        SceneManager.LoadScene(nomeTutorial);
+    }
+
+    public void AbrirScore()
+    {
+        painelMenu.SetActive(false);
+        painelScore.SetActive(true);
+    }
+
+    public void FecharScore()
+    {
+        painelMenu.SetActive(true);
+        painelScore.SetActive(false);
     }
 
     public void Sair()

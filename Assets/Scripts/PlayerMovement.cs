@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject playerObject;
     [SerializeField] private float horizontalSpeed = 4f;
     [SerializeField] private float maxSpeed = 15f;
+    [SerializeField] private GameObject painelGameOver;
 
     private int targetScore = 1;
     public float moveSpeed = 4f;
@@ -14,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public bool goingDown = false;
     private int score;
 
+    void Start()
+    {
+        Time.timeScale = 1;
+        painelGameOver.SetActive(false);
+    }
 
     void MovimentaEsquerda()
     {
@@ -92,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Hit");
+            Time.timeScale = 0;
+            painelGameOver.SetActive(true);
         }
     }
 }

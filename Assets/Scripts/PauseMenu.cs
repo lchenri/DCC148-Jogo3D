@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
 
     public Transform pauseMenu;
     [SerializeField] private string MenuPrincipal;
+    [SerializeField] private string game;
+
 
     void Start()
     {
@@ -41,5 +43,11 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(MenuPrincipal);
+    }
+
+    public void CarregarJogo()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(game);
     }
 }
