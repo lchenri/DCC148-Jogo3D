@@ -26,7 +26,7 @@ public class MapGenerator : MonoBehaviour
     {
         secNum = Random.Range(0, 3);
         lastSection = secNum;
-        sectionTime = 60 / player.GetComponent<PlayerMovement>().moveSpeed;
+        sectionTime = 40 / player.GetComponent<PlayerMovement>().moveSpeed;
 
         while (secNum == lastSection)
         {
