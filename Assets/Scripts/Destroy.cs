@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+    public GameObject player;
+    private float playerZPos;
     void Start()
     {
         StartCoroutine(DestroySection());
@@ -13,7 +15,12 @@ public class Destroy : MonoBehaviour
     {
         if (transform.name == "Section(Clone)")
         {
-            yield return new WaitForSeconds(80);
+            yield return new WaitForSeconds(30);
+            playerZPos = player.transform.position.z;
+            if (playerZPos < transform.position.z + 60)
+            {
+                yield return new WaitForSeconds(25);
+            }
             Destroy(gameObject);
         }
     }
