@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isJumping = false;
     public bool goingDown = false;
+
+    public float jumpHeight = 3f;
     public GameObject playerObject;
 
     void MovimentaEsquerda()
@@ -55,21 +57,21 @@ public class PlayerMovement : MonoBehaviour
         {
             if(!goingDown)
             {
-                transform.Translate(Vector3.up * Time.deltaTime * 3f, Space.World);
+                transform.Translate(Vector3.up * Time.deltaTime * jumpHeight, Space.World);
             }
 
             if(goingDown)
             {
-                transform.Translate(Vector3.up * Time.deltaTime * -3f, Space.World);
+                transform.Translate(Vector3.up * Time.deltaTime * -jumpHeight, Space.World);
             }
         }
     }
 
     IEnumerator JumpSequence()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.5f);
         goingDown = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.5f);
         isJumping = false;
         goingDown = false;
         playerObject.GetComponent<Animator>().Play("Standard Run");
