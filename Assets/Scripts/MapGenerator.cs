@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeFleid] private GameObject[] section;
-    [SerializeFleid] private GameObject player;
-    [SerializeFleid] private int zPos = 60;
+    [SerializeField] private GameObject[] section;
+    [SerializeField] private GameObject player;
+    [SerializeField] private int zPos = 60;
     private bool generating = false;
     private int secNum;
     private int lastSection;
