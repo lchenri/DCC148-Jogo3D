@@ -5,12 +5,16 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public GameObject[] section;
-    public int zPos = 50;
+    public GameObject player;
+    public int zPos = 60;
     public bool generating = false;
     public int secNum;
+    private int lastSection;
+    private float sectionTime;
 
     void Update()
     {
+        sectionTime = 0;
         if (generating == false)
         {
             generating = true;
@@ -21,9 +25,17 @@ public class MapGenerator : MonoBehaviour
     IEnumerator GenerateSection()
     {
         secNum = Random.Range(0, 3);
+        lastSection = secNum;
+        sectionTime = 60 / player.GetComponent<PlayerMovement>().moveSpeed;
+
+        while (secNum == lastSection)
+        {
+            secNum = Random.Range(0, 3);
+        }
+
         Instantiate(section[secNum], new Vector3(0, 0, zPos), Quaternion.identity);
-        zPos += 50;
-        yield return new WaitForSeconds(2);
+        zPos += 60;
+        yield return new WaitForSeconds(sectionTime);
         generating = false;
     }
 }
