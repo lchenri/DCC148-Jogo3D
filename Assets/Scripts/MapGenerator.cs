@@ -7,35 +7,26 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private GameObject[] section;
     [SerializeField] private GameObject player;
     [SerializeField] private int zPos = 60;
-    private bool generating = false;
     private int secNum;
-    private int lastSection;
-    private float sectionTime;
+    private int lastSection = 0;
+    private float playerZPos;
 
     void Update()
     {
-        sectionTime = 0;
-        if (generating == false)
-        {
-            generating = true;
-            StartCoroutine(GenerateSection());
-        }
-    } 
+        playerZPos = player.transform.position.z;
 
-    IEnumerator GenerateSection()
-    {
-        secNum = Random.Range(0, 3);
-        lastSection = secNum;
-        sectionTime = 40 / player.GetComponent<PlayerMovement>().moveSpeed;
-
-        while (secNum == lastSection)
+        if (zPos < playerZPos + 300)
         {
+
             secNum = Random.Range(0, 3);
-        }
+            while (secNum == lastSection)
+            {
+                secNum = Random.Range(0, 3);
+            }
+            lastSection = secNum;
+            Instantiate(section[secNum], new Vector3(0, 0, zPos), Quaternion.identity);
 
-        Instantiate(section[secNum], new Vector3(0, 0, zPos), Quaternion.identity);
-        zPos += 60;
-        yield return new WaitForSeconds(sectionTime);
-        generating = false;
+            zPos += 60;
+        }
     }
 }
