@@ -17,9 +17,9 @@ public class Destroy : MonoBehaviour
         {
             yield return new WaitForSeconds(30);
             playerZPos = player.transform.position.z;
-            if (playerZPos < transform.position.z + 60)
+            while (playerZPos < transform.position.z + 60)
             {
-                yield return new WaitForSeconds(25);
+                yield return new WaitForSeconds(20);
             }
             Destroy(gameObject);
         }
