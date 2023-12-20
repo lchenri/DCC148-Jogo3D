@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private GameObject playerObject;
-    [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float horizontalSpeed = 4f;
+    public float moveSpeed = 4f;
 
     public bool isJumping = false;
     public bool goingDown = false;
