@@ -16,9 +16,9 @@ public class CoinController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {   
-            Destroy(gameObject);
             ScoreController.instance.UpdateScore();
             coinSFX.Play();
+            Destroy(gameObject);
             
         }
     }
