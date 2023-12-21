@@ -15,12 +15,16 @@ public class AI : MonoBehaviour
 
     private Quaternion initialRotation;
 
+    private Animator animator;
+
     
 
 
 
     void Start()
     {
+        animator = playerObject.GetComponent<Animator>();
+        animator.SetBool("Running", true);
         initialRotation = transform.rotation;
         agent = GetComponent<NavMeshAgent>();
     }

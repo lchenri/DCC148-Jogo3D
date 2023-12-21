@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private int targetScore = 1;
     private int score;
 
-    private AgentLinkMover LinkMover;
 
     private Animator animator;
 
@@ -27,22 +26,10 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1;
         playerAnimator = playerObject.GetComponent<Animator>();
         painelGameOver.SetActive(false);
-        LinkMover = GetComponent<AgentLinkMover>();
         animator = playerObject.GetComponent<Animator>();
 
-        LinkMover.OnLinkStart += HandleLinkStart;
-        LinkMover.OnLinkEnd += HandleLinkEnd;
     }
 
-    void HandleLinkStart()
-    {
-        playerObject.GetComponent<Animator>().Play("jumpAnimation");
-    }
-
-    void HandleLinkEnd()
-    {
-        playerObject.GetComponent<Animator>().Play("Standard Run");
-    }
 
     void Update()
     {
