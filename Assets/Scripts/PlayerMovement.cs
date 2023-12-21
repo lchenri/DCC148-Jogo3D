@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         isJumping = false;
         goingDown = false;
+        transform.position = new Vector3(transform.position.x, 1.3f, transform.position.z);
     }
 
     void OnTriggerEnter(Collider other)
