@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMover))]
 public class AI : MonoBehaviour
 {
+    [SerializeField] private GameObject playerObject;
     private NavMeshAgent agent;
+
+    public bool movimenta = true;
 
     public float moveSpeed = 3f;
 
@@ -15,70 +19,59 @@ public class AI : MonoBehaviour
 
     public float horizontalSpeed = 4f;
 
+    public bool isJumping = false;
+    public bool goingDown = false;
+
+    public GameObject alvo;
+
+    public float alturaDoPe = 0.1f;
+    //[SerializeField]private AnimationCurve m_Curve;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        //agent.pathfindingFailed += OnPathfindingFailed;
     }
+
+    /*void Pula()
+    {
+        if (!isJumping)
+            {
+                isJumping = true;
+                playerObject.GetComponent<Animator>().Play("jumpAnimation");
+                StartCoroutine(JumpSequence());
+                Debug.Log("Pulo");
+            }
+    }
+
+    void FinalPulo()
+    {
+        if (isJumping)
+        {
+            if (!goingDown)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 5f, Space.World);
+            }
+
+            if (goingDown)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * -5f, Space.World);
+            }
+        }
+    }*/
 
     // Update is called once per frame
     void Update()
     {
+        //agent.Move(Vector3.forward * moveSpeed * Time.deltaTime);
+        agent.SetDestination(alvo.transform.position);
 
-        agent.Move(Vector3.forward * moveSpeed * Time.deltaTime);
-        Vector3 forwardDirection = agent.transform.forward;
-        NavMeshHit hit;
-        if (NavMesh.Raycast(agent.transform.position, forwardDirection, out hit, NavMesh.AllAreas))
+
+        if(agent.isOnOffMeshLink)
         {
-            Debug.DrawLine(agent.transform.position, hit.position, Color.red);
 
-            // Verifica se a distância do ponto de impacto é menor que a distância mínima desejada
-            if (Vector3.Distance(agent.transform.position, hit.position) <= minDistanciaAcao)
-            {
-                Debug.Log("Ponto de impacto dentro da distância mínima de ação");
-                Vector3 hitObjectDirection = hit.position;
-
-                // Verifica se deve virar à esquerda ou à direita do objeto de impacto
-                if(agent.transform.position.x < 0)
-                {
-                    Debug.Log("Agente à esquerda do ponto de impacto");
-                    agent.transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    Debug.Log("Agente à direita do ponto de impacto");
-                    agent.transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
-                }
-                
-
-                /*// Verifica se o ponto de impacto está à esquerda ou à direita do agente
-                if (hitObjectDirection.x < agent.transform.position.x)
-                {
-                    Debug.Log("Ponto de impacto à esquerda do agente");
-                    // Se o ponto de impacto estiver à esquerda do agente, vire à esquerda
-                    agent.transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
-
-                }
-                else if (hitObjectDirection.x > agent.transform.position.x)
-                {
-                    Debug.Log("Ponto de impacto à direita do agente");
-                    // Se o ponto de impacto estiver à direita do agente, vire à direita
-                    agent.transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    Debug.Log("Ponto de impacto à frente do agente");
-                    // Se o ponto de impacto estiver à frente do agente, analisa a posição do objeto de impacto e decide se deve virar à esquerda ou à direita
-                    
-                }*/
-            }
         }
-        else
-        {
-            // Se não houver colisão com o NavMesh, você pode desenhar um raio mais longo para fins de depuração
-            Debug.DrawRay(agent.transform.position, forwardDirection * 100f, Color.green);
-        }
-
 
     }
+
 }

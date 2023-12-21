@@ -4,14 +4,42 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public float horizontalSpeed = 4f;
+    [SerializeField] private GameObject playerObject;
+    [SerializeField] private float horizontalSpeed = 4f;
+    [SerializeField] private float maxSpeed = 15f;
+    [SerializeField] private GameObject painelGameOver;
 
+    private int targetScore = 1;
+    public float moveSpeed = 4f;
     public bool isJumping = false;
     public bool goingDown = false;
+    private int score;
 
-    public float jumpHeight = 3f;
-    public GameObject playerObject;
+    private AgentLinkMover LinkMover;
+
+    private Animator animator;
+
+
+    void Start()
+    {
+        Time.timeScale = 1;
+        painelGameOver.SetActive(false);
+        LinkMover = GetComponent<AgentLinkMover>();
+        animator = playerObject.GetComponent<Animator>();
+
+        LinkMover.OnLinkStart += HandleLinkStart;
+        LinkMover.OnLinkEnd += HandleLinkEnd;
+    }
+
+    void HandleLinkStart()
+    {
+        playerObject.GetComponent<Animator>().Play("jumpAnimation");
+    }
+
+    void HandleLinkEnd()
+    {
+        playerObject.GetComponent<Animator>().Play("Standard Run");
+    }
 
     void MovimentaEsquerda()
     {
@@ -25,6 +53,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        score = ScoreController.instance.score;
+
+        if (score > targetScore && moveSpeed < maxSpeed)
+        {
+            moveSpeed += 0.1f;
+            horizontalSpeed += 0.05f;
+            targetScore++;
+        }
+
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime, Space.World);
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -53,27 +90,36 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(isJumping)
+        if (isJumping)
         {
-            if(!goingDown)
+            if (!goingDown)
             {
-                transform.Translate(Vector3.up * Time.deltaTime * jumpHeight, Space.World);
+                transform.Translate(Vector3.up * Time.deltaTime * 3f, Space.World);
             }
 
-            if(goingDown)
+            if (goingDown)
             {
-                transform.Translate(Vector3.up * Time.deltaTime * -jumpHeight, Space.World);
+                transform.Translate(Vector3.up * Time.deltaTime * -3f, Space.World);
             }
         }
     }
 
     IEnumerator JumpSequence()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         goingDown = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         isJumping = false;
         goingDown = false;
         playerObject.GetComponent<Animator>().Play("Standard Run");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Time.timeScale = 0;
+            painelGameOver.SetActive(true);
+        }
     }
 }

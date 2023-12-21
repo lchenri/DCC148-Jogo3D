@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TrailCamera : MonoBehaviour
 {
-    public Transform target;
-    public float trailDistance = 5.0f;
-    public float heightOffset = 3.0f;
-    public float cameraDelay = 0.02f;
+    [SerializeField] private Transform target;
+    [SerializeField] private float trailDistance = 5.0f;
+    [SerializeField] private float heightOffset = 3.0f;
+    [SerializeField] private float cameraDelay = 0.02f;
 
 
     // Update is called once per frame
