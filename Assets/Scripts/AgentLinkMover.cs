@@ -11,10 +11,16 @@ public class AgentLinkMover : MonoBehaviour
     public delegate void LinkEvent();
     public LinkEvent OnLinkStart;
     public LinkEvent OnLinkEnd;
+    public Animator animator;
+
+    private Quaternion initialRotation;
+
 
     IEnumerator Start()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        //animator = GetComponent<Animator>();
+        initialRotation = transform.rotation;
         agent.autoTraverseOffMeshLink = false;
         while (true)
         {
@@ -26,7 +32,9 @@ public class AgentLinkMover : MonoBehaviour
                 
                 agent.CompleteOffMeshLink();
                 OnLinkEnd?.Invoke();
+                transform.rotation = initialRotation;
             }
+            animator.Play("Standard Run");
             yield return null;
         }
     }
@@ -40,6 +48,10 @@ public class AgentLinkMover : MonoBehaviour
         while (normalizedTime < 1.0f)
         {
             float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
+            
+            //animator.SetFloat();
+            animator.Play("jumpAnimation");
+            transform.rotation = initialRotation;
             agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
             normalizedTime += Time.deltaTime / duration;
             yield return null;

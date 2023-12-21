@@ -73,11 +73,11 @@ NavMeshProjectSettings:
   m_Settings:
   - serializedVersion: 3
     agentTypeID: 0
-    agentRadius: 0.7
-    agentHeight: 2
+    agentRadius: 1.13
+    agentHeight: 1.75
     agentSlope: 45.02
-    agentClimb: 0.001
-    ledgeDropHeight: 3
+    agentClimb: 0.07
+    ledgeDropHeight: 0
     maxJumpAcrossDistance: 3
     minRegionArea: 2
     manualCellSize: 0
@@ -91,10 +91,10 @@ NavMeshProjectSettings:
       m_Flags: 0
   - serializedVersion: 3
     agentTypeID: -1372625422
-    agentRadius: 0.7
-    agentHeight: 2
+    agentRadius: 0.91
+    agentHeight: 1.32
     agentSlope: 33.6
-    agentClimb: 0.5
+    agentClimb: 0.21
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -109,4 +109,4 @@ NavMeshProjectSettings:
       m_Flags: 0
   m_SettingNames:
   - Humanoid
-  - PlayerAIDemo
+  - WalkableArea
