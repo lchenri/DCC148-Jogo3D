@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float horizontalSpeed = 4f;
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private GameObject painelGameOver;
-
+    [SerializeField] private AudioSource gameOverSFX;
     private int targetScore = 1;
     public float moveSpeed = 4f;
     public bool isJumping = false;
@@ -98,8 +98,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            Time.timeScale = 0;
-            painelGameOver.SetActive(true);
+            moveSpeed = 0;
+            playerObject.GetComponent<Animator>().Play("StumbleAnimation"); 
+            StartCoroutine(ShowGameOver());
+            
         }
+    }
+
+    IEnumerator ShowGameOver()
+    {
+        gameOverSFX.Play();
+        yield return new WaitForSecondsRealtime(2.5f);
+        Time.timeScale = 0;
+        painelGameOver.SetActive(true);
     }
 }
