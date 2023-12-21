@@ -9,6 +9,7 @@ public class ScoreController : MonoBehaviour
     public int score = 0;
     public TMP_Text scoreText;
     public static ScoreController instance;
+    private float lastPosZ = 0;
 
     void Start()
     {
@@ -16,12 +17,14 @@ public class ScoreController : MonoBehaviour
     }
 
 
-    public void UpdateScore()
+    public void UpdateScore(float posZ)
     {
-        score++;
-
-        scoreText.text = score.ToString();
-
-        PlayerPrefs.SetInt("Score", score);
+        if (posZ > lastPosZ)
+        {
+            lastPosZ = posZ;
+            score++;
+            scoreText.text = score.ToString();
+            PlayerPrefs.SetInt("Score", score);
+        }
     }
 }
