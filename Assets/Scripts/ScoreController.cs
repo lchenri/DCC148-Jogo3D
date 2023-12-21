@@ -24,7 +24,11 @@ public class ScoreController : MonoBehaviour
             lastPosZ = posZ;
             score++;
             scoreText.text = score.ToString();
-            PlayerPrefs.SetInt("Score", score);
+            
+            if (score > PlayerPrefs.GetInt("HighScore"))
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
         }
     }
 }
