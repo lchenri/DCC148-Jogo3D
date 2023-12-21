@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         if (running)
         {
             playerAnimator.SetBool("Running", running);
+
             score = ScoreController.instance.score;
 
             if (score > targetScore && moveSpeed < maxSpeed)
@@ -98,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         isJumping = false;
         goingDown = false;
+        running = true;
     }
 
     void OnTriggerEnter(Collider other)
