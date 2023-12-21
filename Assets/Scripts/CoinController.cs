@@ -15,10 +15,11 @@ public class CoinController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            ScoreController.instance.UpdateScore();
+        {   
+            ScoreController.instance.UpdateScore(this.transform.position.z);
             coinSFX.Play();
             Destroy(gameObject);
+            
         }
     }
 }
