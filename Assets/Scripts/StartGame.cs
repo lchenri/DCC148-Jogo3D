@@ -31,10 +31,11 @@ public class StartGame : MonoBehaviour
         yield return new WaitForSeconds(1);
         countGo.SetActive(true);
         yield return new WaitForSeconds(1);
-        count3.SetActive(false);
-        countGo.SetActive(false);
         count1.SetActive(false);
         count2.SetActive(false);
+        count3.SetActive(false);
+        countGo.SetActive(false);
+        PlayerMovement.running = true;
     }
 }
 
