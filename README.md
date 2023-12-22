@@ -1,7 +1,7 @@
 
 # Jungle Sprint
 
-![Screenshot do Jogo]()
+![Imagem do Jogo](Img/Jungle.png)
 
 ## Sobre o Jogo
 Jogo Endless Runner implementando os seguitnes requisitos:
@@ -25,6 +25,7 @@ Jogo Endless Runner implementando os seguitnes requisitos:
 
 ## Créditos de Assets
 - [Free Platform Game Assets] (https://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479)
+- [Bryce] (https://www.mixamo.com/#/?page=1&query=bryce&type=Character)
 
 ## Desenvolvedores
 - Frederico Dôndici
