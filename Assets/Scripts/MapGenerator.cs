@@ -18,10 +18,10 @@ public class MapGenerator : MonoBehaviour
         if (zPos < playerZPos + 300)
         {
 
-            secNum = Random.Range(0, 3);
+            secNum = Random.Range(0, 6);
             while (secNum == lastSection)
             {
-                secNum = Random.Range(0, 3);
+                secNum = Random.Range(0, 6);
             }
             lastSection = secNum;
             Instantiate(section[secNum], new Vector3(0, 0, zPos), Quaternion.identity);
