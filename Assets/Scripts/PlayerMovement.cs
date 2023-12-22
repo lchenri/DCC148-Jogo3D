@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private GameObject painelGameOver;
     [SerializeField] private AudioSource gameOverSFX;
+    [SerializeField] private AudioSource musicSFX;
     public float moveSpeed = 4f;
     public bool isJumping = false;
     public bool goingDown = false;
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = 0;
             running = false;
+            musicSFX.Stop();
             playerAnimator.SetBool("Running", running);
             StartCoroutine(ShowGameOver());
 
