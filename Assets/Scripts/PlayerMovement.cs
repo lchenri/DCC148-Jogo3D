@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator;
     [SerializeField] private GameObject playerObject;
     [SerializeField] private float horizontalSpeed = 4f;
-    [SerializeField] private float maxSpeed = 15f;
+    [SerializeField] private float maxSpeed = 25f;
     [SerializeField] private GameObject painelGameOver;
     [SerializeField] private AudioSource gameOverSFX;
     public float moveSpeed = 4f;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (score > targetScore && moveSpeed < maxSpeed)
             {
-                moveSpeed += 0.1f;
+                moveSpeed += 0.2f;
                 horizontalSpeed += 0.05f;
                 targetScore++;
             }
