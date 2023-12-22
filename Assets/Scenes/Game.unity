@@ -3803,7 +3803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1843221757}
   horizontalSpeed: 4
-  maxSpeed: 15
+  maxSpeed: 25
   painelGameOver: {fileID: 265613167}
   gameOverSFX: {fileID: 88357188}
   musicSFX: {fileID: 175889446}
