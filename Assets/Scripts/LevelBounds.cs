@@ -9,7 +9,6 @@ public class LevelBounds : MonoBehaviour
     public float left;
     public float right;
 
-    // Update is called once per frame
     void Update()
     {
         left = leftBound;

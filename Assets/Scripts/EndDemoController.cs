@@ -7,13 +7,11 @@ public class EndDemoController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private string Menu;
-    // Start is called before the first frame update
     void Start()
     {
         Menu = "MenuPrincipal";
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(player.transform.position.z > 162f)

@@ -49,7 +49,6 @@ public class AgentLinkMover : MonoBehaviour
         {
             float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
             
-            //animator.SetFloat();
             animator.Play("jumpAnimation");
             transform.rotation = initialRotation;
             agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;

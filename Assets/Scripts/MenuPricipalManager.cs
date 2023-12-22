@@ -35,6 +35,5 @@ public class MenuPricipalManager : MonoBehaviour
     public void Sair()
     {
         UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
     }
 }

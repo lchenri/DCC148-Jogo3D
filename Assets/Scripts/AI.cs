@@ -17,10 +17,6 @@ public class AI : MonoBehaviour
 
     private Animator animator;
 
-    
-
-
-
     void Start()
     {
         animator = playerObject.GetComponent<Animator>();
@@ -38,7 +34,6 @@ public class AI : MonoBehaviour
         //se o player estiver perto do final do cenário, volta para o menu
         if(agent.transform.position.z == 162f)
         {
-            Debug.Log("Fim do jogo");
             SceneManager.LoadScene(Menu);
         }
     }

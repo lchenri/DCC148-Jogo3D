@@ -10,7 +10,6 @@ public class TrailCamera : MonoBehaviour
     [SerializeField] private float cameraDelay = 0.02f;
 
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 pos = target.position - (target.forward * trailDistance);
